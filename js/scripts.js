@@ -158,3 +158,64 @@ isThisNumberDividable([1, 2, 3, 4, 5,6], 2);
 // Ejemplo salida:
 // Usuarios menores de 30: John, Bob
 
+const isTheUserOver30=(users)=>{
+    
+    const result=users.filter(user => { //filtrar edades
+        return user.age<30;
+    });
+
+   
+   const usersUnder30 = result.map(user => { //guardar los nombres en un array
+        return user.name;
+   });
+    
+    console.log(`Usuarios menores de 30: ${usersUnder30}`);
+
+};
+isTheUserOver30([
+    { name: 'John', age: 25 },
+    { name: 'Jane', age: 30 },
+    { name: 'Bob', age: 20 }
+    ]);
+
+
+//1️⃣2️⃣ Macarena quiere comprobar números pares.  
+// Crea una función que reciba un array con 5 números y te diga si todos son pares o no.
+// Ejemplo: Si recibe [2, 4, 6, 8, 10], deberá impimir Todos son pares.
+
+const areThisEvenNumbers=(numbers)=>{
+    const result=numbers.every(number =>{
+        return number%2===0;
+    })
+    result===true ? console.log ("Todos son pares") : console.log("No todos son pares");
+}
+areThisEvenNumbers([2, 4, 6, 8, 10]);
+
+//1️⃣3️⃣ Abby quiere ordenar palabras por longitud.  
+// Crea una función que reciba un array de 5 palabras y las ordene en base a su longitud, de menor a mayor.
+// Ejemplo: Si recibe ["cielo", "sol", "estrella", "luz", "universo"], deberá imprimir ["sol", "luz", "cielo", "estrella", "universo"].
+
+const wordsByLength=(words)=>{
+    const result=words.sort((a,b)=> {
+        if (a.length>b.length) return -1; //segui las diapositivas pero super claro, no lo tengo
+        if (a.length<b.length) return 1;
+        return 0;
+    });
+    console.log(result);
+}
+wordsByLength(["cielo", "sol", "estrella", "luz", "universo"]);
+
+//1️⃣4️⃣ Camila quiere invertir palabras.  
+// Crea una función que reciba una palabra e imprima la misma palabra en orden inverso conservando las mayúsculas y minúsculas. A Camila no le gusta el método reverse(), así que quiere hacerlo de otra manera 😊.
+// Ejemplo: Si recibe "Mariposas" deberá imprimir "sasopiraM"
+
+const reverseWithNoReverse=(word)=>{
+    const result=word.split('').sort((a,b)=>{
+        if(a.localeCompare(b)) return -1; //que ignore su valor ASCII
+        // if(a.localeCompare(b)) return 1; //que ignore su valor ASCII
+        // return 0;
+    }).join('');
+
+    console.log(result);
+}
+reverseWithNoReverse("Mariposa");
