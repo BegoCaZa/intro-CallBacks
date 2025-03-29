@@ -85,3 +85,76 @@ const numberSquaredCubed=(numbers)=>{
 
 }
 numberSquaredCubed([2,4,8]);
+
+//7️⃣ Sabrina quiere modificar un mensaje secreto.
+// Crea una función que reciba una palabra e imprima por consola esa palabra pero con las vocales en mayúscula.
+// Ejemplo: Si recibe "javascript", deberá imprimir "jAvAscrIpt"
+
+const translateThisWord=(word)=>{
+    const vowels="aeiou";
+    //callbacks funcionan con arrays, asi que tengo que pasar la palbra a string
+    const result=word.split('').map(letter=>{ //split('') convierte la palabra en un array de caracteres. 
+        if (vowels.includes(letter)){ //map da un array con las letras modificadas
+            return letter.toUpperCase();
+        } else{
+            return letter;
+        }   
+    }).join(''); //.join('') une todos los elementos del array en un solo string,solo funciona en arrays, por eso va después de map(), que retorna un array.
+
+    console.log(result);
+}
+translateThisWord("javascript");
+
+//8️⃣ Macarena está buscando números importantes.
+// Crea una función que reciba un array de 10 números y te diga si alguno es mayor de 5.
+// deberá mostrar:
+// "Algún número es mayor de 5"
+// "Ningún número es mayor de 5"
+
+const areThisNumbersBiggerThan5=(numbers)=>{
+    
+    const result=numbers.some(number=>{
+        return number>5;
+    })
+    result===true ? console.log("Algún número es mayor a 5") : console.log("Ningún número es mayor de 5");
+    
+}
+areThisNumbersBiggerThan5([1,2,3,4,3,2,3,4,3]);
+areThisNumbersBiggerThan5([1,2,3,4,5,6,7,8,9]);
+
+//9️⃣ Camila está filtrando resultados.
+// Crea una función que reciba un array de 5 palabras y un número, y devuelva un array con las palabras que tienen esa longitud.
+// Ejemplo: Si recibe ['hola', 'adios', 'gato', 'perro', 'casa'], 4, deberá imprimir ['hola', 'gato', 'casa'].
+
+const wordWith4Letters=(words,number)=>{
+    const result=words.filter((word=>{
+        return word.length===number;
+    }));
+    console.log(result);
+}
+wordWith4Letters(['hola', 'adios', 'gato', 'perro', 'casa'], 4);
+
+//🔟 Bego quiere comprobar divisores.
+// Crea una función que reciba un array de números y un número, y devuelva un array con los números que sean divisores de ese número.
+// Ejemplo: Si recibe [1, 2, 3, 4, 5, 6] y 2, deberá imprimir [1, 2, 4, 6].
+
+const isThisNumberDividable=(numbers,divisor)=>{
+    const result=numbers.filter((number=>{
+        return number%divisor===0;
+    }));
+    console.log(result);
+}
+isThisNumberDividable([1, 2, 3, 4, 5,6], 2);
+
+//1️⃣1️⃣ Sabrina está seleccionando usuarios.
+// Crea una función que reciba este array y te devuelva sólo los usuarios cuya edad sea menor de 30.
+
+// const users = [
+// { name: 'John', age: 25 },
+// { name: 'Jane', age: 30 },
+// { name: 'Bob', age: 20 }
+// ];
+
+// Ejemplo salida:
+// Usuarios menores de 30: John, Bob
+
