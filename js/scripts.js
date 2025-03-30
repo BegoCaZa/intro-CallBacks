@@ -219,3 +219,52 @@ const reverseWithNoReverse=(word)=>{
     console.log(result);
 }
 reverseWithNoReverse("Mariposa");
+
+//💪 Desafío Extra 1:
+// Bego quiere simplificar un array de números de dos dígitos sumando sus dígitos.
+// Crea una función que reciba un array de 5 números de dos dígitos y devuelva un array con la suma de los dígitos.
+// Ejemplo: Si recibe [21, 34, 87, 10, 28], deberá imprimir [3, 7, 15, 1, 10].
+
+const simplifyThisNumbers = (numbers) => {
+    const separatedNumber = numbers.map(number => {  
+        return String(number)//convierte el número a string para aplicar reduce
+            .split('')// Separamos los dígitos en el array por numero
+            .reduce((acc, digit) => acc + Number(digit), 0); //suma los digitos, pasa a numero//0 es que empieza a contar desde ahi
+    });
+
+    console.log(separatedNumber);
+};
+
+simplifyThisNumbers([21, 34, 87, 10, 28]);
+
+
+//💪 Desafío Extra 2:
+// Macarena quiere borrar usuarios específicos.
+// Crea una función que reciba un id y borre al usuario correspondiente del siguiente array:
+// const users = [
+// { id: "user001", name: "Juan", surname: "Pérez", age: 30 },
+// { id: "user002", name: "María", surname: "González", age: 25 },
+// { id: "user003", name: "Pedro", surname: "Sánchez", age: 35 },
+// { id: "user004", name: "Ana", surname: "Martínez", age: 28 },
+// { id: "user005", name: "Luis", surname: "López", age: 40 }
+// ];
+
+// Ejemplo: Si recibe "user003", el array quedará sin Pedro.
+
+const deleteThisUser=(users, id)=>{
+
+    const result=users.filter(user => {
+        return user.id !== id;  //quiero que me regrese los que NO tengan ese id   
+    });
+    console.log(result);
+
+};
+
+deleteThisUser([
+    { id: "user001", name: "Juan", surname: "Pérez", age: 30 },
+    { id: "user002", name: "María", surname: "González", age: 25 },
+    { id: "user003", name: "Pedro", surname: "Sánchez", age: 35 },
+    { id: "user004", name: "Ana", surname: "Martínez", age: 28 },
+    { id: "user005", name: "Luis", surname: "López", age: 40 }
+    ],"user003")
+
