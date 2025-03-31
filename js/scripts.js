@@ -35,9 +35,8 @@ divideNumberByIndex([10, 20, 30])
 // Ejemplo: Si recibe ["hola", "mundo"], deberá imprimir ["HOLA", "MUNDO"].
 
 const returnWordInUpperCase=(words)=>{
-    const result=words.map(letter=> {
-        return letter.toUpperCase();
-    });
+    const result=words.map(letter=> 
+        letter.toUpperCase())
     console.log(result);
 }
 returnWordInUpperCase(["hola", "mundo"])
@@ -49,6 +48,7 @@ returnWordInUpperCase(["hola", "mundo"])
 const filterWordByLetter=(words,letter)=>{
     const result=words.filter((word => { //el filter es SOLO para el array, aqui no hay que meter la m....la usara por que ya esta en la funcion
         return word.charAt(0).toLowerCase() === letter.toLowerCase();//luego filtra la primer letra
+        //PLAN B return word.toUpperCase().startsWith(letter.toUpperCase());
     }));
     console.log(result);
 
@@ -101,7 +101,16 @@ const translateThisWord=(word)=>{
         }   
     }).join(''); //.join('') une todos los elementos del array en un solo string,solo funciona en arrays, por eso va después de map(), que retorna un array.
 
-    console.log(result);
+    //VERSION CON REDUCE
+    // const joinMessage=splitMessage.reduce((acc,letter) =>{
+    //     if (vowels.includes(letter)){
+    //         return acc+letter.toUpperCase();
+    //     }else{
+    //         return acc+letter;
+    //     }
+    //     });
+
+    // console.log(result);
 }
 translateThisWord("javascript");
 
@@ -113,10 +122,8 @@ translateThisWord("javascript");
 
 const areThisNumbersBiggerThan5=(numbers)=>{
     
-    const result=numbers.some(number=>{
-        return number>5;
-    })
-    result===true ? console.log("Algún número es mayor a 5") : console.log("Ningún número es mayor de 5");
+    const result=numbers.some(number=> number>5);
+    result ? console.log("Algún número es mayor a 5") : console.log("Ningún número es mayor de 5");
     
 }
 areThisNumbersBiggerThan5([1,2,3,4,3,2,3,4,3]);
@@ -184,11 +191,10 @@ isTheUserOver30([
 // Ejemplo: Si recibe [2, 4, 6, 8, 10], deberá impimir Todos son pares.
 
 const areThisEvenNumbers=(numbers)=>{
-    const result=numbers.every(number =>{
-        return number%2===0;
-    })
-    result===true ? console.log ("Todos son pares") : console.log("No todos son pares");
-}
+    const result=numbers.every(number =>number%2===0);
+    
+    result ? console.log ("Todos son pares") : console.log("No todos son pares"); //por default if empieza con positivo, asi que e true no es necesario
+};
 areThisEvenNumbers([2, 4, 6, 8, 10]);
 
 //1️⃣3️⃣ Abby quiere ordenar palabras por longitud.  
@@ -196,13 +202,10 @@ areThisEvenNumbers([2, 4, 6, 8, 10]);
 // Ejemplo: Si recibe ["cielo", "sol", "estrella", "luz", "universo"], deberá imprimir ["sol", "luz", "cielo", "estrella", "universo"].
 
 const wordsByLength=(words)=>{
-    const result=words.sort((a,b)=> {
-        if (a.length>b.length) return -1; //segui las diapositivas pero super claro, no lo tengo
-        if (a.length<b.length) return 1;
-        return 0;
-    });
+    const result=words.sort((a,b)=> a.length-b.length);
     console.log(result);
-}
+    //una resta normal
+};
 wordsByLength(["cielo", "sol", "estrella", "luz", "universo"]);
 
 //1️⃣4️⃣ Camila quiere invertir palabras.  
@@ -210,14 +213,13 @@ wordsByLength(["cielo", "sol", "estrella", "luz", "universo"]);
 // Ejemplo: Si recibe "Mariposas" deberá imprimir "sasopiraM"
 
 const reverseWithNoReverse=(word)=>{
-    const result=word.split('').sort((a,b)=>{
-        if(a.localeCompare(b)) return -1; //que ignore su valor ASCII
-        // if(a.localeCompare(b)) return 1; //que ignore su valor ASCII
-        // return 0;
-    }).join('');
+    const splitWord=word.split('');
+    const result = splitWord.reduce((acc,letter) =>{
+        return letter+acc; //que empiece a acumular, pero los acomode a la izquierda
+    })
 
     console.log(result);
-}
+};
 reverseWithNoReverse("Mariposa");
 
 //💪 Desafío Extra 1:
@@ -225,15 +227,25 @@ reverseWithNoReverse("Mariposa");
 // Crea una función que reciba un array de 5 números de dos dígitos y devuelva un array con la suma de los dígitos.
 // Ejemplo: Si recibe [21, 34, 87, 10, 28], deberá imprimir [3, 7, 15, 1, 10].
 
-const simplifyThisNumbers = (numbers) => {
-    const separatedNumber = numbers.map(number => {  
-        return String(number)//convierte el número a string para aplicar reduce
-            .split('')// Separamos los dígitos en el array por numero
-            .reduce((acc, digit) => acc + Number(digit), 0); //suma los digitos, pasa a numero//0 es que empieza a contar desde ahi
-    });
+//VERSION LARGA
+// const simplifyThisNumbers = (numbers) => {
+//     const separatedNumber = numbers.map(number => {  
+//         return String(number)//convierte el número a string para aplicar reduce
+//             .split('')// Separamos los dígitos en el array por numero
+//             .reduce((acc, digit) => acc + Number(digit), 0); //suma los digitos, pasa a numero//0 es que empieza a contar desde ahi
+//     });
 
-    console.log(separatedNumber);
-};
+//     console.log(separatedNumber);
+// };
+
+const simplifyThisNumbers = (numbers) => {
+    numbers.forEach(number => {
+        const numberString=String(number);
+        const firstDigit=Number(numberString.charAt(0));
+        const secondDigit=Number(numberString.charAt(1));
+        console.log(firstDigit+secondDigit);
+    });
+    };
 
 simplifyThisNumbers([21, 34, 87, 10, 28]);
 
